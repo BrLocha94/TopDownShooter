@@ -51,6 +51,8 @@ public class EnemyShip : ShipBase, IReceiver<GameState>
     public void EnemyShipDestroyed()
     {
         onEnemyShipDestroyed?.Invoke();
+
+        this.Invoke(2f, () => Destroy(gameObject));
     }
 
     private void FixedUpdate()

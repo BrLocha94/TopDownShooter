@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShooterBehaviour : MonoBehaviour
+public class ShooterBehaviour : MonoBehaviour, IReceiver<GameState>
 {
     [Header("External references")]
     [SerializeField]
@@ -18,6 +18,8 @@ public class ShooterBehaviour : MonoBehaviour
 
     protected bool canShoot = true;
     protected Coroutine coroutine;
+
+    protected bool canCount = true;
 
     public virtual void ResetShooter(bool canShootOnStart)
     {
@@ -48,12 +50,20 @@ public class ShooterBehaviour : MonoBehaviour
 
         while(time < cooldownTime)
         {
-            //TODO: Add gamestate check to count time
-            time += Time.deltaTime;
+            if(canCount)
+                time += Time.deltaTime;
 
             yield return null;
         }
 
         canShoot = true;
+    }
+
+    public void ReceiveUpdate(GameState updatedValue)
+    {
+        if (updatedValue == GameState.Null || updatedValue == GameState.Running)
+            canCount = true;
+        else
+            canCount = false;
     }
 }

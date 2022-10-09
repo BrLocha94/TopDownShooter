@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IReceiver<GameState>
 {
     [SerializeField]
     private Explosion explosionPrefab;
@@ -13,6 +13,8 @@ public class Bullet : MonoBehaviour
 
     private Coroutine coroutine = null;
     private float damage = 0f;
+
+    private bool canCount = true;
 
     public void Initialize(Transform spawn, float damage)
     {
@@ -38,6 +40,8 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        if (!canCount) return;
+
         transform.Translate(Vector2.up * Time.deltaTime * speed);
     }
 
@@ -47,11 +51,20 @@ public class Bullet : MonoBehaviour
 
         while(time < lifeTime)
         {
-            time += Time.deltaTime;
+            if(canCount)
+                time += Time.deltaTime;
 
             yield return null;
         }
 
         Destroy(gameObject);
+    }
+
+    public void ReceiveUpdate(GameState updatedValue)
+    {
+        if (updatedValue == GameState.Null || updatedValue == GameState.Running)
+            canCount = true;
+        else
+            canCount = false;
     }
 }

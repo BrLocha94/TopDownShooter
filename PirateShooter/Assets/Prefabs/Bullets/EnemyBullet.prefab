@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5524012004638737938}
   - component: {fileID: 5524012004638737939}
   - component: {fileID: 5524012004638737936}
+  - component: {fileID: 7148149195123849931}
   - component: {fileID: 5524012004638737937}
   m_Layer: 0
   m_Name: EnemyBullet
@@ -99,6 +100,33 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7169218586777390303, guid: f971b29cd93c9084c995ce6efe66dd80, type: 3}
   speed: 5
   lifeTime: 1.5
+--- !u!114 &7148149195123849931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524012004638737940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53778d39bbc971e4aab2ae4b230a504b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReceive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5524012004638737936}
+        m_TargetAssemblyTypeName: Bullet, Assembly-CSharp
+        m_MethodName: ReceiveUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!58 &5524012004638737937
 CircleCollider2D:
   m_ObjectHideFlags: 0

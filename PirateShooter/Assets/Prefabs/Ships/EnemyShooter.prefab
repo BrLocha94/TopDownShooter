@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568041645}
   - component: {fileID: 568041646}
+  - component: {fileID: 7224114811589950991}
   m_Layer: 0
   m_Name: ShooterPosition
   m_TagString: Untagged
@@ -47,6 +48,33 @@ MonoBehaviour:
   spawnPosition: {fileID: 568041645}
   cooldownTime: 4
   bulletDamage: 6
+--- !u!114 &7224114811589950991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568041644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53778d39bbc971e4aab2ae4b230a504b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReceive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 568041646}
+        m_TargetAssemblyTypeName: ShooterBehaviour, Assembly-CSharp
+        m_MethodName: ReceiveUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1943551172658474625
 GameObject:
   m_ObjectHideFlags: 0

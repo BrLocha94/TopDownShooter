@@ -55,6 +55,9 @@ public abstract class ShipBase : MonoBehaviour
             shipAnimator.Play("damage_lv_03");
             shipCollider.enabled = false;
             isAlive = false;
+
+            onShipDestroyed?.Invoke();
+            return;
         }
 
         else if (currentLife <= shipBaseLife * 25 / 100)

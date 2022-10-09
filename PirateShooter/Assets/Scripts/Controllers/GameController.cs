@@ -8,12 +8,17 @@ public class GameController : MonoBehaviour, IReceiver<GameState>
     private SceneChanger sceneChanger;
     [SerializeField]
     private EnemySpawnController enemySpawnController;
+    [SerializeField]
+    private UIController uiController;
 
     private void Awake()
     {
         StateMachineController.InitializeStateMachine();
+
         enemySpawnController.spawnTime = PersistentData.gameSpawnTime;
         PersistentData.ResetShipCount();
+
+        uiController.SetTimerValues(PersistentData.gameTime);
     }
 
     private void Start()

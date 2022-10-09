@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6113211213538716014}
   - component: {fileID: 6113211213538716015}
+  - component: {fileID: 1974177972}
   m_Layer: 0
   m_Name: CenterShooterPosition
   m_TagString: Untagged
@@ -81,6 +82,33 @@ MonoBehaviour:
   centerSpawnPosition: {fileID: 6113211213538716014}
   rightSpawnPosition: {fileID: 6113211214879730854}
   tripleBulletDamage: 8
+--- !u!114 &1974177972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113211213538716013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53778d39bbc971e4aab2ae4b230a504b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReceive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6113211213538716015}
+        m_TargetAssemblyTypeName: ShooterBehaviour, Assembly-CSharp
+        m_MethodName: ReceiveUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6113211214122628480
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,7 +270,19 @@ MonoBehaviour:
   shipBaseDamage: 10
   onShipDestroyed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: OnPlayerShipDestroyed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   frontMoveKey: 119
   backMoveKey: 115
   leftRotationKey: 97
