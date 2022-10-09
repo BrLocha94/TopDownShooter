@@ -48,10 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipAnimator: {fileID: 1670976748798853987}
   shipCollider: {fileID: 2258329665589618842}
+  explosionPrefab: {fileID: 3186864049980843246, guid: d592445232d120f43971ca9f5e728b6a, type: 3}
   shipMovimentSpeed: 1
   shipRotationSpeed: 40
-  shipBaseLife: 100
-  shipBaseDamage: 50
+  shipBaseLife: 50
+  shipBaseDamage: 40
+  onShipDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   target: {fileID: 0}
   minDistance: 4
   speedModificator: 1.6

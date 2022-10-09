@@ -16,6 +16,7 @@ public class EnemyShip : ShipBase
     protected float angle = 0f;
     protected float offset = 0f;
 
+    bool initializedRotation = false;
     bool canMoveFoward = true;
 
     private void Awake()
@@ -27,11 +28,24 @@ public class EnemyShip : ShipBase
     {
         base.Initialize();
 
-        defaultRotation = transform.rotation.eulerAngles;
+        target = null;
+
+        if (!initializedRotation)
+        {
+            initializedRotation = true;
+            defaultRotation = transform.rotation.eulerAngles;
+        }
+    }
+
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
     }
 
     private void FixedUpdate()
     {
+        if (!isAlive) return;
+
         moveVector = Vector3.zero;
         rotationVector = Vector3.zero;
 
@@ -40,6 +54,8 @@ public class EnemyShip : ShipBase
 
     private void Update()
     {
+        if (!isAlive) return;
+
         ExecuteOnUpdate();
     }
 
@@ -74,7 +90,7 @@ public class EnemyShip : ShipBase
 
     public void CollidedWithPlayer()
     {
-        Destroy(gameObject);
+        TakeDamage(shipBaseLife);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -12,8 +12,6 @@ public class PlayerShooterBehaviour : ShooterBehaviour
     [SerializeField]
     protected Transform rightSpawnPosition;
     [SerializeField]
-    private float bulletOffset;
-    [SerializeField]
     protected float tripleBulletDamage = 10f;
 
     public void ExecuteTripleShoot()

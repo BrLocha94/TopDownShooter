@@ -35,9 +35,18 @@ public class PlayerShip : ShipBase
         Initialize();
     }
 
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        shooterBehaviour.ResetShooter(true);
+    }
+
     private void FixedUpdate()
     {
         moveVector = Vector3.zero;
+
+        if (!isAlive) return;
 
         if (Input.GetKey(frontMoveKey) && canMoveFoward)
             moveVector.y += shipMovimentSpeed;
@@ -54,6 +63,8 @@ public class PlayerShip : ShipBase
 
     private void Update()
     {
+        if (!isAlive) return;
+
         transform.Translate(moveVector * Time.deltaTime);
         transform.Rotate(rotationVector * Time.deltaTime);
 

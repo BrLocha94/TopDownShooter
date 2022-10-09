@@ -46,7 +46,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5524012004638737936, guid: 583d365721e2841448dc9f808fee412a, type: 3}
   spawnPosition: {fileID: 568041645}
   cooldownTime: 4
-  bulletDamage: 10
+  bulletDamage: 6
 --- !u!1 &1943551172658474625
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,10 +96,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipAnimator: {fileID: 1943551172752804534}
   shipCollider: {fileID: 2373488989927549140}
+  explosionPrefab: {fileID: 3186864049980843246, guid: d592445232d120f43971ca9f5e728b6a, type: 3}
   shipMovimentSpeed: 0.7
   shipRotationSpeed: 50
-  shipBaseLife: 100
+  shipBaseLife: 60
   shipBaseDamage: 10
+  onShipDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
   target: {fileID: 0}
   minDistance: 4
   shooterBehaviour: {fileID: 568041646}
