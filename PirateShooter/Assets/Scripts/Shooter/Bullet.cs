@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
+    private Explosion explosionPrefab;
+    [SerializeField]
     private float speed = 7;
     [SerializeField]
     private float lifeTime = 3;
@@ -28,6 +30,9 @@ public class Bullet : MonoBehaviour
 
     public void CollidedWithTarget()
     {
+        Explosion explosion = Instantiate(explosionPrefab);
+        explosion.Initialize(transform.position);
+
         Destroy(gameObject);
     }
 

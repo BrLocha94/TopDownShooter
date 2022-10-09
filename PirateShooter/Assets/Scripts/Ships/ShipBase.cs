@@ -7,6 +7,8 @@ public abstract class ShipBase : MonoBehaviour
     [Header("External References")]
     [SerializeField]
     protected Animator shipAnimator;
+    [SerializeField]
+    protected Collider2D shipCollider;
 
     [Header("Ship base config")]
     [SerializeField]
@@ -23,6 +25,7 @@ public abstract class ShipBase : MonoBehaviour
     public virtual void Initialize()
     {
         currentLife = shipBaseLife;
+        shipCollider.enabled = true;
         shipAnimator.Play("idle");
     }
 
@@ -31,12 +34,15 @@ public abstract class ShipBase : MonoBehaviour
         currentLife -= damage;
 
         if (currentLife <= 0f)
+        {
             shipAnimator.Play("damage_lv_03");
+            shipCollider.enabled = false;
+        }
 
-        else if (currentLife <= shipBaseLife * 25/100)
+        else if (currentLife <= shipBaseLife * 25 / 100)
             shipAnimator.Play("damage_lv_02");
 
-        else if (currentLife <= shipBaseLife * 60/100)
+        else if (currentLife <= shipBaseLife * 60 / 100)
             shipAnimator.Play("damage_lv_01");
 
         else

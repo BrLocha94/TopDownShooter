@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipAnimator: {fileID: 6113211214122628481}
+  shipCollider: {fileID: 1311103692}
   shipMovimentSpeed: 2
   shipRotationSpeed: 50
   shipBaseLife: 100
