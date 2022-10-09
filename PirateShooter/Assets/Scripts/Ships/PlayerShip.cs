@@ -27,6 +27,9 @@ public class PlayerShip : ShipBase
     private Vector3 moveVector = Vector3.zero;
     private Vector3 rotationVector = Vector3.zero;
 
+    bool canMoveFoward = true;
+    bool canMoveBackwards = true;
+
     private void Awake()
     {
         Initialize();
@@ -36,14 +39,10 @@ public class PlayerShip : ShipBase
     {
         moveVector = Vector3.zero;
 
-        if (Input.GetKey(frontMoveKey))
-        {
+        if (Input.GetKey(frontMoveKey) && canMoveFoward)
             moveVector.y += shipMovimentSpeed;
-        }
-        if (Input.GetKey(backMoveKey))
-        {
+        else if (Input.GetKey(backMoveKey) && canMoveBackwards)
             moveVector.y -= shipMovimentSpeed;
-        }
 
         rotationVector = Vector3.zero;
 
@@ -67,6 +66,16 @@ public class PlayerShip : ShipBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag.Equals("Obstacle"))
+        {
+            if (moveVector.y > 0)
+                canMoveFoward = false;
+            else if (moveVector.y < 0)
+                canMoveBackwards = false;
+
+            return;
+        }
+
         if (collision.tag.Equals("Enemy"))
         {
             EnemyShip enemy = collision.GetComponent<EnemyShip>();
@@ -90,5 +99,16 @@ public class PlayerShip : ShipBase
             return;
         }
 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Obstacle"))
+        {
+            canMoveFoward = true;
+            canMoveBackwards = true;
+
+            return;
+        }
     }
 }

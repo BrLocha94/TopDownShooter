@@ -16,6 +16,8 @@ public class EnemyShip : ShipBase
     protected float angle = 0f;
     protected float offset = 0f;
 
+    bool canMoveFoward = true;
+
     private void Awake()
     {
         Initialize();
@@ -49,7 +51,8 @@ public class EnemyShip : ShipBase
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             offset = 90f;
 
-            moveVector.y += shipMovimentSpeed;
+            if(canMoveFoward)
+                moveVector.y += shipMovimentSpeed;
         }
     }
 
@@ -76,6 +79,13 @@ public class EnemyShip : ShipBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag.Equals("Obstacle"))
+        {
+            canMoveFoward = false;
+
+            return;
+        }
+
         if (collision.tag.Equals("PlayerBullet"))
         {
             Bullet bullet = collision.GetComponent<Bullet>();
@@ -87,6 +97,15 @@ public class EnemyShip : ShipBase
 
             return;
         }
+    }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("Obstacle"))
+        {
+            canMoveFoward = true;
+
+            return;
+        }
     }
 }
