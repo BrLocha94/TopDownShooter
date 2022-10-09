@@ -18,9 +18,9 @@ public class CountdownWindow : ScaleWindow
 
     Coroutine coroutine;
 
-    public override void Activate(Action callback = null)
+    public override void Activate()
     {
-        base.Activate(callback);
+        base.Activate();
 
         if (coroutine != null)
             StopCoroutine(coroutine);
@@ -28,9 +28,9 @@ public class CountdownWindow : ScaleWindow
         coroutine = StartCoroutine(CountDownRoutine());
     }
 
-    public override void Deactivate(Action callback = null)
+    public override void Deactivate()
     {
-        base.Deactivate(callback);
+        base.Deactivate();
 
         if (coroutine != null)
             StopCoroutine(coroutine);

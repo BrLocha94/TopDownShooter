@@ -5,6 +5,6 @@ using UnityEngine;
 
 public abstract class WindowBase : MonoBehaviour
 {
-    public abstract void Activate(Action callback = null);
-    public abstract void Deactivate(Action callback = null);
+    public abstract void Activate();
+    public abstract void Deactivate();
 }

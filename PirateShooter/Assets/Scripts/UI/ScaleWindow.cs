@@ -13,19 +13,15 @@ public class ScaleWindow : WindowBase
     [SerializeField]
     private Vector3 deactivateScale = Vector3.zero;
 
-    public override void Activate(Action callback = null)
+    public override void Activate()
     {
         targetRect.transform.localScale = activateScale;
         gameObject.SetActive(true);
-
-        callback?.Invoke();
     }
 
-    public override void Deactivate(Action callback = null)
+    public override void Deactivate()
     {
         targetRect.transform.localScale = deactivateScale;
         gameObject.SetActive(false);
-
-        callback?.Invoke();
     }
 }
