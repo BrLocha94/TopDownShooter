@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShip : ShipBase
+public class PlayerShip : ShipBase, IReceiver<GameState>
 {
     [Header("Player movement keymap")]
     [SerializeField]
@@ -30,6 +30,8 @@ public class PlayerShip : ShipBase
     bool canMoveFoward = true;
     bool canMoveBackwards = true;
 
+    bool canAct = true;
+
     private void Awake()
     {
         Initialize();
@@ -46,7 +48,7 @@ public class PlayerShip : ShipBase
     {
         moveVector = Vector3.zero;
 
-        if (!isAlive) return;
+        if (!isAlive || !canAct) return;
 
         if (Input.GetKey(frontMoveKey) && canMoveFoward)
             moveVector.y += shipMovimentSpeed;
@@ -63,7 +65,7 @@ public class PlayerShip : ShipBase
 
     private void Update()
     {
-        if (!isAlive) return;
+        if (!isAlive || !canAct) return;
 
         transform.Translate(moveVector * Time.deltaTime);
         transform.Rotate(rotationVector * Time.deltaTime);
@@ -121,5 +123,13 @@ public class PlayerShip : ShipBase
 
             return;
         }
+    }
+
+    public void ReceiveUpdate(GameState updatedValue)
+    {
+        if (updatedValue == GameState.Null || updatedValue == GameState.Running)
+            canAct = true;
+        else
+            canAct = false;
     }
 }

@@ -48,6 +48,9 @@ public static class StateMachineController
                 if (nextState == GameState.Initializing) return true;
                 break;
             case GameState.Initializing:
+                if (nextState == GameState.Counting) return true;
+                break;
+            case GameState.Counting:
                 if (nextState == GameState.Running) return true;
                 break;
             case GameState.Running:

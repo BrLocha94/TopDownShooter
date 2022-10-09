@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShip : ShipBase
+public class EnemyShip : ShipBase, IReceiver<GameState>
 {
+    public delegate void OnEnemyShipDestroyedHandler();
+    public event OnEnemyShipDestroyedHandler onEnemyShipDestroyed;
+
     [Header("Enemy ship configs")]
     [SerializeField]
     protected Transform target;
@@ -19,6 +22,8 @@ public class EnemyShip : ShipBase
     bool initializedRotation = false;
     bool canMoveFoward = true;
 
+    bool canAct = true;
+
     private void Awake()
     {
         Initialize();
@@ -29,6 +34,7 @@ public class EnemyShip : ShipBase
         base.Initialize();
 
         target = null;
+        onEnemyShipDestroyed = null;
 
         if (!initializedRotation)
         {
@@ -42,9 +48,14 @@ public class EnemyShip : ShipBase
         this.target = target;
     }
 
+    public void EnemyShipDestroyed()
+    {
+        onEnemyShipDestroyed?.Invoke();
+    }
+
     private void FixedUpdate()
     {
-        if (!isAlive) return;
+        if (!isAlive || !canAct) return;
 
         moveVector = Vector3.zero;
         rotationVector = Vector3.zero;
@@ -54,7 +65,7 @@ public class EnemyShip : ShipBase
 
     private void Update()
     {
-        if (!isAlive) return;
+        if (!isAlive || !canAct) return;
 
         ExecuteOnUpdate();
     }
@@ -123,5 +134,13 @@ public class EnemyShip : ShipBase
 
             return;
         }
+    }
+
+    public void ReceiveUpdate(GameState updatedValue)
+    {
+        if (updatedValue == GameState.Null || updatedValue == GameState.Running)
+            canAct = true;
+        else
+            canAct = false;
     }
 }

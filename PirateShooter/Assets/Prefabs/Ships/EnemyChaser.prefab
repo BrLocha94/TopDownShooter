@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670976748792342358}
   - component: {fileID: 1670976748792342359}
+  - component: {fileID: 826268960137319065}
   - component: {fileID: 2258329665589618842}
   - component: {fileID: 2041149781}
   m_Layer: 0
@@ -55,10 +56,49 @@ MonoBehaviour:
   shipBaseDamage: 40
   onShipDestroyed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1670976748792342359}
+        m_TargetAssemblyTypeName: EnemyShip, Assembly-CSharp
+        m_MethodName: EnemyShipDestroyed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   target: {fileID: 0}
   minDistance: 4
   speedModificator: 1.6
+--- !u!114 &826268960137319065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670976748792342356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53778d39bbc971e4aab2ae4b230a504b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReceive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1670976748792342359}
+        m_TargetAssemblyTypeName: EnemyShip, Assembly-CSharp
+        m_MethodName: ReceiveUpdate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &2258329665589618842
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawnController : MonoBehaviour
+public class EnemySpawnController : MonoBehaviour, IReceiver<GameState>
 {
     [Header("External references")]
     [SerializeField]
@@ -16,17 +16,18 @@ public class EnemySpawnController : MonoBehaviour
     [SerializeField]
     private List<EnemyShip> enemyShips = new List<EnemyShip>();
 
-    [Header("Spawn configs")]
-    [SerializeField]
-    private float defaultSpawnTime = 8;
+    public float spawnTime { get; set; } = 8;
 
     private float time = 0;
+    private bool canCount = true;
 
     private void Update()
     {
+        if (!canCount) return;
+
         time += Time.deltaTime;
 
-        if(time >= defaultSpawnTime)
+        if(time >= spawnTime)
         {
             SpawnShip();
             time = 0f;
@@ -41,6 +42,20 @@ public class EnemySpawnController : MonoBehaviour
 
         EnemyShip enemyShip = Instantiate(enemyShips[randomShip], spawnPositions[randomPosition].position, Quaternion.identity);
         enemyShip.Initialize();
+        enemyShip.onEnemyShipDestroyed += OnEnemyShipDestroyed;
         enemyShip.SetTarget(target);
+    }
+
+    private void OnEnemyShipDestroyed()
+    {
+        PersistentData.DestroyedShip();
+    }
+
+    public void ReceiveUpdate(GameState updatedValue)
+    {
+        if (updatedValue == GameState.Null || updatedValue == GameState.Running)
+            canCount = true;
+        else
+            canCount = false;
     }
 }
