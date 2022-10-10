@@ -76,7 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4939285121363697321, guid: 293d26a22b5ee7e4fae5ce98a5e32d79, type: 3}
   spawnPosition: {fileID: 6113211213538716014}
-  cooldownTime: 1.5
+  cooldownTime: 1.1
   bulletDamage: 13
   leftSpawnPosition: {fileID: 6113211212967552078}
   centerSpawnPosition: {fileID: 6113211213538716014}
@@ -264,8 +264,9 @@ MonoBehaviour:
   shipAnimator: {fileID: 6113211214122628481}
   shipCollider: {fileID: 1311103692}
   explosionPrefab: {fileID: 3186864049980843246, guid: d592445232d120f43971ca9f5e728b6a, type: 3}
-  shipMovimentSpeed: 3
-  shipRotationSpeed: 90
+  lifebarPrefab: {fileID: 62306648118350942, guid: 154603d53b8fab84b910f030900f6883, type: 3}
+  shipMovimentSpeed: 4
+  shipRotationSpeed: 120.63
   shipBaseLife: 100
   shipBaseDamage: 10
   onShipDestroyed:
@@ -284,12 +285,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   frontMoveKey: 119
-  backMoveKey: 115
   leftRotationKey: 97
   rightRotationKey: 100
   shooterBehaviour: {fileID: 6113211213538716015}
   shootKey: 112
-  tripleShootKey: 107
+  tripleShootKey: 32
 --- !u!114 &3262073402872461123
 MonoBehaviour:
   m_ObjectHideFlags: 0

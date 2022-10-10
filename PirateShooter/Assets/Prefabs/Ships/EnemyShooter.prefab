@@ -126,7 +126,8 @@ MonoBehaviour:
   shipAnimator: {fileID: 1943551172752804534}
   shipCollider: {fileID: 2373488989927549140}
   explosionPrefab: {fileID: 3186864049980843246, guid: d592445232d120f43971ca9f5e728b6a, type: 3}
-  shipMovimentSpeed: 0.7
+  lifebarPrefab: {fileID: 62306648118350942, guid: 154603d53b8fab84b910f030900f6883, type: 3}
+  shipMovimentSpeed: 2
   shipRotationSpeed: 50
   shipBaseLife: 60
   shipBaseDamage: 10

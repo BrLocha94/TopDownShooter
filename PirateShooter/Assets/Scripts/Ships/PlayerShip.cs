@@ -7,8 +7,6 @@ public class PlayerShip : ShipBase, IReceiver<GameState>
     [Header("Player movement keymap")]
     [SerializeField]
     private KeyCode frontMoveKey = KeyCode.W;
-    [SerializeField]
-    private KeyCode backMoveKey = KeyCode.S;
 
     [Space]
     [SerializeField]
@@ -28,7 +26,6 @@ public class PlayerShip : ShipBase, IReceiver<GameState>
     private Vector3 rotationVector = Vector3.zero;
 
     bool canMoveFoward = true;
-    bool canMoveBackwards = true;
 
     bool canAct = true;
 
@@ -52,8 +49,6 @@ public class PlayerShip : ShipBase, IReceiver<GameState>
 
         if (Input.GetKey(frontMoveKey) && canMoveFoward)
             moveVector.y += shipMovimentSpeed;
-        else if (Input.GetKey(backMoveKey) && canMoveBackwards)
-            moveVector.y -= shipMovimentSpeed;
 
         rotationVector = Vector3.zero;
 
@@ -83,8 +78,6 @@ public class PlayerShip : ShipBase, IReceiver<GameState>
         {
             if (moveVector.y > 0)
                 canMoveFoward = false;
-            else if (moveVector.y < 0)
-                canMoveBackwards = false;
 
             return;
         }
@@ -119,8 +112,6 @@ public class PlayerShip : ShipBase, IReceiver<GameState>
         if (collision.tag.Equals("Obstacle"))
         {
             canMoveFoward = true;
-            canMoveBackwards = true;
-
             return;
         }
     }

@@ -30,13 +30,13 @@ public class OptionsSet : MonoBehaviour
     public void OnGameTimeChange()
     {
         gameTime = (int)gameTimeSlider.value;
-        gameTimeText.text = "Game Time: " + gameTime;
+        gameTimeText.text = "Game session time: " + gameTime;
     }
 
     public void OnSpawnTimeChange()
     {
         spawnTime = (int)spawnSlider.value;
-        spawnText.text = "Spawn Time: " + spawnTime;
+        spawnText.text = "Enemy Spawn time: " + spawnTime;
     }
 
     public void OnClick()

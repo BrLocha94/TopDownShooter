@@ -22,7 +22,7 @@ public class GameOverController : MonoBehaviour
         if (gameClear)
             message = "You survived the battle and sank " + PersistentData.shipsDestroyed + " ships!";
         else
-            message = "You fought bravely, but didn't survived...";
+            message = "You fought bravely, sank " + PersistentData.shipsDestroyed + " ships, but didn't survived...";
 
         messageText.text = message;
     }

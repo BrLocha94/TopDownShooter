@@ -12,6 +12,8 @@ public abstract class ShipBase : MonoBehaviour
     protected Collider2D shipCollider;
     [SerializeField]
     private Explosion explosionPrefab;
+    [SerializeField]
+    private LifeBar lifebarPrefab;
 
     [Header("Ship base config")]
     [SerializeField]
@@ -30,9 +32,18 @@ public abstract class ShipBase : MonoBehaviour
     protected bool isAlive = false;
     protected float currentLife;
 
+    protected LifeBar lifeBar;
+
     public virtual void Initialize()
     {
         currentLife = shipBaseLife;
+
+        if (lifeBar == null)
+        {
+            lifeBar = Instantiate(lifebarPrefab);
+            lifeBar.Initialize(transform, currentLife);
+        }
+
         shipCollider.enabled = true;
         shipAnimator.Play("idle");
         isAlive = true;
@@ -45,7 +56,7 @@ public abstract class ShipBase : MonoBehaviour
         if (currentLife < 0)
             currentLife = 0;
 
-        //TODO: Update Health bar
+        lifeBar.SetLife(currentLife);
 
         if (currentLife <= 0f)
         {
@@ -55,6 +66,8 @@ public abstract class ShipBase : MonoBehaviour
             shipAnimator.Play("damage_lv_03");
             shipCollider.enabled = false;
             isAlive = false;
+
+            lifeBar.DestroyBar();
 
             onShipDestroyed?.Invoke();
             return;

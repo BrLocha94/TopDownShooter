@@ -24,11 +24,6 @@ public class EnemyShip : ShipBase, IReceiver<GameState>
 
     bool canAct = true;
 
-    private void Awake()
-    {
-        Initialize();
-    }
-
     public override void Initialize()
     {
         base.Initialize();
@@ -52,7 +47,9 @@ public class EnemyShip : ShipBase, IReceiver<GameState>
     {
         onEnemyShipDestroyed?.Invoke();
 
-        this.Invoke(2f, () => Destroy(gameObject));
+        this.Invoke(2f, () => {
+            Destroy(gameObject);
+        });
     }
 
     private void FixedUpdate()
